@@ -83,40 +83,23 @@ $(function() {
     
     
     $('.client-active').slick({
-        dots: false,
-        arrows: false,
-        infinite: true,
-        autoplay: true,
-        speed: 800,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        responsive: [
-            {
-              breakpoint: 1200,
-              settings: {
-                slidesToShow: 3,
-              }
-            },
-            {
-              breakpoint: 992,
-              settings: {
-                slidesToShow: 2,
-              }
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2,
-              }
-            },
-            {
-              breakpoint: 576,
-              settings: {
-                slidesToShow: 1,
-              }
-            }
-        ]
-        });
+    dots: false,
+    arrows: false,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 0, // Continuous
+    speed: 3000, // Slow, smooth scroll
+    cssEase: 'linear', // No easing, continuous
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+        { breakpoint: 1200, settings: { slidesToShow: 3 } },
+        { breakpoint: 992, settings: { slidesToShow: 2 } },
+        { breakpoint: 768, settings: { slidesToShow: 2 } },
+        { breakpoint: 576, settings: { slidesToShow: 1 } }
+    ]
+    });
+
     
     
     //===== Back to top
