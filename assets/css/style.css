@@ -1529,6 +1529,20 @@ p {
 
 .containerthing {
   position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.containerthing .card {
+  border: none;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.containerthing .card img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .overlay {
@@ -1540,8 +1554,13 @@ p {
   height: 100%;
   width: 100%;
   opacity: 0;
-  transition: .5s ease;
-  background-color: #1d2d33;
+  transition: 0.3s ease;
+  background-color: rgba(29, 45, 51, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
 }
 
 .containerthing:hover .overlay {
@@ -1549,13 +1568,7 @@ p {
 }
 
 .textthing {
-  color: white;
-  font-size: 18px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.6;
 }
