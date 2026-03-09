@@ -326,13 +326,13 @@
   }
 
   /* Stagger animation for team cards */
-  .containerthing {
+  .containerthing.pre-animate {
     opacity: 0;
     transform: translateY(20px);
   }
   .containerthing.animate-in {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: translateY(0) !important;
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
@@ -575,7 +575,7 @@
  <h2 class="title">About PantherHack</h2>
  </div> <!-- section title -->
 
- <p class="text mt-30">We are Princeton Day School’s fourth-ever hackathon! This year’s event will be virtual with an optional in-person component at PDS, taking place this coming April over the course of three days. It will be open to high school students across the U.S. for a thrilling experience full of collaboration and technological innovation.
+ <p class="text mt-30">We are Princeton Day School’s sixth-ever hackathon! This year’s event will be virtual with an optional in-person component at PDS, taking place this coming April over the course of three days. It will be open to high school students across the U.S. for a thrilling experience full of collaboration and technological innovation.
  <br> <br> In order to guide our participants, we will release various challenges throughout the competition that will test students’ abilities to think outside the box and implement creative solutions to real-world problems.
  </p>
  </div> <!-- about content -->
@@ -1542,22 +1542,26 @@ window.addEventListener('scroll', function() {
 
 // Team Cards Stagger Animation
 (function() {
-  var cards = document.querySelectorAll('.containerthing');
+  var teamSection = document.getElementById('ourteam');
+  if (!teamSection) return;
+  var cards = teamSection.querySelectorAll('.containerthing');
   if (!cards.length) return;
+  // Add pre-animate class so cards start hidden
+  cards.forEach(function(card) { card.classList.add('pre-animate'); });
+  // Observe the team section itself
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        var allCards = entry.target.parentElement.parentElement.querySelectorAll('.containerthing');
-        allCards.forEach(function(card, index) {
+        cards.forEach(function(card, index) {
           setTimeout(function() {
             card.classList.add('animate-in');
-          }, index * 100);
+          }, index * 80);
         });
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
-  if (cards[0]) observer.observe(cards[0]);
+  }, { threshold: 0.05 });
+  observer.observe(teamSection);
 })();
 
 // Smooth active nav highlighting
