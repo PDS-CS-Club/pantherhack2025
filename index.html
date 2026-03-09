@@ -231,6 +231,135 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
   }
 
+  /* Back to Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.35);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,123,255,0.5);
+  }
+
+  /* Section Reveal Animation */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Gradient text for section titles */
+  .gradient-title {
+    background: linear-gradient(135deg, #007bff, #00d4ff, #007bff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientText 4s ease infinite;
+  }
+  @keyframes gradientText {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+
+  /* Smooth scroll behavior */
+  html { scroll-behavior: smooth; }
+
+  /* Countdown highlight pulse */
+  .countdown-highlight {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(0,212,255,0.1));
+    border-radius: 50px;
+    border: 1px solid rgba(0,123,255,0.2);
+    font-weight: 600;
+    color: #007bff;
+    animation: countdownPulse 2s ease-in-out infinite;
+  }
+  @keyframes countdownPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,123,255,0.2); }
+    50% { box-shadow: 0 0 0 10px rgba(0,123,255,0); }
+  }
+
+  /* Glowing sponsor cards */
+  .single-brand:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 25px rgba(0,123,255,0.15);
+    transition: all 0.3s ease;
+  }
+  .single-brand {
+    transition: all 0.3s ease;
+  }
+
+  /* FAQ accordion enhance */
+  .card-header:hover {
+    background: rgba(0,123,255,0.03) !important;
+    transition: background 0.3s ease;
+  }
+
+  /* Stagger animation for team cards */
+  .containerthing {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .containerthing.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Tooltip for social links */
+  .social-link-tooltip {
+    position: relative;
+  }
+  .social-link-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .social-link-tooltip:hover::after {
+    opacity: 1;
+  }
+
   /* Mobile responsive for floating elements */
   @media (max-width: 768px) {
     .floating-discord {
@@ -241,6 +370,7 @@
     }
     .floating-discord .discord-text { display: none; }
     .announcement-banner { font-size: 12px; padding: 8px 35px 8px 15px; }
+    .back-to-top { width: 40px; height: 40px; font-size: 18px; bottom: 15px; right: 15px; }
   }
  </style>
 
@@ -253,7 +383,7 @@
 
  <!-- Announcement Banner -->
  <div class="announcement-banner" id="announcementBanner">
-  <span class="banner-text">Registration is now open for PantherHack 2026! April 17-19 &mdash; <a href="https://forms.gle/2vxSdURz9YtiYAkm8" target="_blank">Sign Up Now</a></span>
+  <span class="banner-text">Registration is now open for PantherHack 2026! April 17-19 &mdash; <a href="https://forms.gle/y8aCDCPWRtS5HYSJ6" target="_blank">Sign Up Now</a></span>
   <button class="close-banner" onclick="document.getElementById('announcementBanner').style.display='none'">&times;</button>
  </div>
 
@@ -319,7 +449,7 @@
  </div>
 
  <div class="navbar-btn d-none d-sm-inline-block">
- <a class="main-btn" href="https://forms.gle/2vxSdURz9YtiYAkm8" target="_blank">Sign up Form</a>
+ <a class="main-btn" href="https://forms.gle/y8aCDCPWRtS5HYSJ6" target="_blank">Sign up Form</a>
  </div>
  </nav> <!-- navbar -->
  </div>
@@ -340,7 +470,7 @@
 
  <ul class="header-btn">
  <li><a class="main-btn main-btn-2" href="https://pantherhack-2026.devpost.com/" rel="nofollow" target="_blank">Devpost</a></li>
- <li><a class="main-btn" href="https://forms.gle/2vxSdURz9YtiYAkm8" rel="nofollow" target="_blank">Sign up Form</a></li>
+ <li><a class="main-btn" href="https://forms.gle/y8aCDCPWRtS5HYSJ6" rel="nofollow" target="_blank">Sign up Form</a></li>
  <li><a class="main-btn" href="https://drive.google.com/file/d/1be6YgcIyTAmhJmebE-2vsLQ9KD7sdaNN/view?usp=sharing" rel="nofollow" target="_blank">Guidelines</a></li>
  </ul>
  </div> <!-- header content -->
@@ -431,7 +561,7 @@
  </table> 
  
 
- <section id="about" class="about-area pb-130 pt-80">
+ <section id="about" class="about-area pb-130 pt-80 reveal-section">
  <div class="container">
  <div class="row align-items-center">
  <div class="col-lg-6">
@@ -563,7 +693,7 @@
  </p>
  <ul class="header-btn">
  <li><a class="main-btn main-btn-2" href="https://pantherhack-2026.devpost.com/" rel="nofollow" target="_blank">Devpost</a></li>
- <li><a class="main-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSd1DKqUNjMxoDkFssmn2OBLI61R3xDqGuQ2qUArjbXPWrETMg/viewform" rel="nofollow" target="_blank">Interest Form</a></li>
+ <li><a class="main-btn" href="https://forms.gle/y8aCDCPWRtS5HYSJ6" rel="nofollow" target="_blank">Interest Form</a></li>
  </ul>
  </div> <!-- header content -->
  </div> <!-- row -->
@@ -574,7 +704,7 @@
 
  <!--====== FEATURES PART START ======-->
 
- <section id="features" class="features-area pt-115 pb-130 gray-bg">
+ <section id="features" class="features-area pt-115 pb-130 gray-bg reveal-section">
  <div class="container">
  <div class="row justify-content-center">
  <div class="col-lg-8">
@@ -631,43 +761,22 @@
  <!--====== FEATURES PART ENDS ======-->
 
  <!--====== TRACKS SECTION START ======-->
- <section id="tracks" class="tracks-area">
+ <section id="tracks" class="tracks-area reveal-section">
   <div class="container">
    <div class="row justify-content-center">
     <div class="col-lg-8">
      <div class="section-title text-center pb-20">
       <h2 class="title">Hackathon Tracks</h2>
-      <p class="text">Choose a challenge track to focus your project on</p>
+      <p class="text">Challenge tracks will be announced soon &mdash; stay tuned!</p>
      </div>
     </div>
    </div>
-   <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-     <div class="single-track wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">
-      <span class="track-icon">&#9851;</span>
-      <h4 class="track-title">Sustainability</h4>
-      <p class="track-desc">Build solutions that address environmental challenges and promote sustainable living for future generations.</p>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-     <div class="single-track wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-      <span class="track-icon">&#9829;</span>
-      <h4 class="track-title">Health &amp; Wellness</h4>
-      <p class="track-desc">Create tools and apps that improve physical or mental health, accessibility, and overall wellbeing.</p>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-     <div class="single-track wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-      <span class="track-icon">&#128218;</span>
-      <h4 class="track-title">Education</h4>
-      <p class="track-desc">Develop innovative learning platforms, study tools, or educational games that make knowledge more accessible.</p>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-     <div class="single-track wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-      <span class="track-icon">&#127759;</span>
-      <h4 class="track-title">Social Good</h4>
-      <p class="track-desc">Design projects that tackle social issues, strengthen communities, and create positive impact in the world.</p>
+   <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 mb-4">
+     <div class="single-track wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s" style="text-align:center; padding: 40px 30px;">
+      <span class="track-icon" style="font-size: 48px;">&#128640;</span>
+      <h4 class="track-title">Tracks TBD</h4>
+      <p class="track-desc">Hackathon tracks and themes will be revealed closer to the event. Join our <a href="https://discord.gg/xpSM9bjFmu" target="_blank" style="color:#007bff; text-decoration:underline;">Discord</a> to be the first to know!</p>
      </div>
     </div>
    </div>
@@ -750,10 +859,10 @@
  </div>
  </div>
 
- <!-- Club Leaders -->
+ <!-- Co-Heads -->
  <div class="row justify-content-center mb-2 mt-4">
  <div class="col-lg-10 mx-auto text-center">
- <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Club Leaders</h3>
+ <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Co-Heads</h3>
  </div>
  </div>
  <div class="row justify-content-center">
@@ -764,11 +873,26 @@
  <div class="card-body">
  <h4 class="m-0">Umang Sharma</h4>
  <hr>
- <div class="small text-black-50">Club Leader</div>
+ <div class="small text-black-50">Co-Head</div>
  </div>
  </div>
  <div class="overlay">
- <div class="textthing">Umang Sharma is a senior at Princeton Day School (Class of '26). He has a passion for computer science and engineering, originating from building computers and keyboards. He has been involved in computer science since second grade, now taking AP Computer Science. Additionally, his love for photography allows him to capture moments that tell compelling stories. He is deeply fascinated by the world of technology and constantly seeks to stay updated with the latest advancements.</div>
+ <div class="textthing">Umang Sharma is a senior at PDS (Class of '26). Passionate about CS and engineering, he's been coding since second grade and now takes AP CS. He also enjoys photography and staying on top of the latest tech.</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/ankith.png" alt="Ankith Namireddy">
+ <div class="card-body">
+ <h4 class="m-0">Ankith Namireddy</h4>
+ <hr>
+ <div class="small text-black-50">Co-Head</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Ankith Namireddy is a senior at Princeton Day School (Class of '26). Some of his hobbies include baking, coding, and reading books. He brings his experience as a returning organizer to help lead PantherHack.</div>
  </div>
  </div>
  </div>
@@ -779,14 +903,23 @@
  <div class="card-body">
  <h4 class="m-0">Dhruv Panchal</h4>
  <hr>
- <div class="small text-black-50">Club Leader</div>
+ <div class="small text-black-50">Co-Head</div>
  </div>
  </div>
  <div class="overlay">
- <div class="textthing">Dhruv Panchal is a senior at Princeton Day School (Class of '26) and a co-founder and Club Leader of PantherHack. He is passionate about technology and innovation, helping to lead the team that brings this hackathon to life each year.</div>
+ <div class="textthing">Dhruv Panchal is a senior at Princeton Day School (Class of '26). He is passionate about technology and innovation, helping to lead the team that brings this hackathon to life each year.</div>
  </div>
  </div>
  </div>
+ </div>
+
+ <!-- Club Leadership -->
+ <div class="row justify-content-center mb-2 mt-3">
+ <div class="col-lg-10 mx-auto text-center">
+ <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Club Leadership</h3>
+ </div>
+ </div>
+ <div class="row justify-content-center">
  <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
  <div class="containerthing h-100">
  <div class="card py-4 h-100 text-center">
@@ -794,89 +927,11 @@
  <div class="card-body">
  <h4 class="m-0">Vivann Khanna</h4>
  <hr>
- <div class="small text-black-50">Club Leader</div>
+ <div class="small text-black-50">Club Leadership</div>
  </div>
  </div>
  <div class="overlay">
  <div class="textthing">Vivann Khanna is a senior at Princeton Day School (Class of '26). An aspiring computer scientist interested in machine learning and all of computer science in general. He helps lead the PantherHack team and is passionate about fostering a love for technology in the community.</div>
- </div>
- </div>
- </div>
- </div>
-
- <!-- Department Heads -->
- <div class="row justify-content-center mb-2 mt-3">
- <div class="col-lg-10 mx-auto text-center">
- <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Department Heads</h3>
- </div>
- </div>
- <div class="row justify-content-center">
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/justin.jpg" alt="Justin Philip">
- <div class="card-body">
- <h4 class="m-0">Justin Philip</h4>
- <hr>
- <div class="small text-black-50">Tech &amp; Design Lead</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Justin Philip is a senior at Princeton Day School (Class of '26). He leads the Tech &amp; Design team for PantherHack, helping to build and maintain the hackathon's digital presence and technical infrastructure.</div>
- </div>
- </div>
- </div>
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/ark.jpg" alt="Ark Rana">
- <div class="card-body">
- <h4 class="m-0">Ark Rana</h4>
- <hr>
- <div class="small text-black-50">Finance Lead</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Ark Rana is a junior at Princeton Day School (Class of '28) interested in Computer Science and Artificial Intelligence. He leads the Finance team for PantherHack and is passionate about building the future of technology and exploring its impact on different fields.</div>
- </div>
- </div>
- </div>
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/aryan.jpg" alt="Aryan Kunwar">
- <div class="card-body">
- <h4 class="m-0">Aryan Kunwar</h4>
- <hr>
- <div class="small text-black-50">Outreach Lead</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Aryan Kunwar is a junior at Princeton Day School (Class of '27). He leads the Outreach team for PantherHack, helping to spread the word about the hackathon and connect with students across the country.</div>
- </div>
- </div>
- </div>
- </div>
-
- <!-- Team Leaders -->
- <div class="row justify-content-center mb-2 mt-3">
- <div class="col-lg-10 mx-auto text-center">
- <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Team Leaders</h3>
- </div>
- </div>
- <div class="row">
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/ankith.png" alt="Ankith Namireddy">
- <div class="card-body">
- <h4 class="m-0">Ankith Namireddy</h4>
- <hr>
- <div class="small text-black-50">Team Leader</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Ankith Namireddy is a senior at Princeton Day School (Class of '26). Some of his hobbies include baking, coding, and reading books. He brings his experience as a returning team leader to help make PantherHack a success.</div>
  </div>
  </div>
  </div>
@@ -887,11 +942,35 @@
  <div class="card-body">
  <h4 class="m-0">Andrew Dai</h4>
  <hr>
- <div class="small text-black-50">Team Leader</div>
+ <div class="small text-black-50">Club Leadership</div>
  </div>
  </div>
  <div class="overlay">
  <div class="textthing">Andrew Dai is a senior at Princeton Day School (Class of '26). A returning PantherHack organizer, he continues to help make each year's event better than the last.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Tech & Design -->
+ <div class="row justify-content-center mb-2 mt-3">
+ <div class="col-lg-10 mx-auto text-center">
+ <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Tech &amp; Design</h3>
+ </div>
+ </div>
+ <div class="row justify-content-center">
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/justin.jpg" alt="Justin Philip">
+ <div class="card-body">
+ <h4 class="m-0">Justin Philip</h4>
+ <hr>
+ <div class="small text-black-50">Team Lead</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Justin Philip is a senior at Princeton Day School (Class of '26). He leads the Tech &amp; Design team for PantherHack, helping to build and maintain the hackathon's digital presence and technical infrastructure.</div>
  </div>
  </div>
  </div>
@@ -902,7 +981,7 @@
  <div class="card-body">
  <h4 class="m-0">Ryan Zhou</h4>
  <hr>
- <div class="small text-black-50">Team Leader</div>
+ <div class="small text-black-50">Tech &amp; Design</div>
  </div>
  </div>
  <div class="overlay">
@@ -913,41 +992,11 @@
  <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
  <div class="containerthing h-100">
  <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/arjun.jpg" alt="Arjun Zagade">
- <div class="card-body">
- <h4 class="m-0">Arjun Zagade</h4>
- <hr>
- <div class="small text-black-50">Team Leader</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Arjun Zagade is a freshman at Princeton Day School (Class of '29). He is passionate about technology and eager to help organize an unforgettable hackathon experience for all participants.</div>
- </div>
- </div>
- </div>
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/aadit.jpg" alt="Aadit Gupta">
- <div class="card-body">
- <h4 class="m-0">Aadit Gupta</h4>
- <hr>
- <div class="small text-black-50">Team Leader</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Aadit Gupta is a freshman at Princeton Day School (Class of '29). He brings fresh ideas and enthusiasm to the PantherHack organizing team.</div>
- </div>
- </div>
- </div>
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
  <img class="card-img-top" src="assets/images/team/reanna.jpg" alt="Reanna Patel">
  <div class="card-body">
  <h4 class="m-0">Reanna Patel</h4>
  <hr>
- <div class="small text-black-50">Team Leader</div>
+ <div class="small text-black-50">Tech &amp; Design</div>
  </div>
  </div>
  <div class="overlay">
@@ -958,11 +1007,65 @@
  <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
  <div class="containerthing h-100">
  <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/reyansh.jpg" alt="Reyansh Dubey">
+ <div class="card-body">
+ <h4 class="m-0">Reyansh Dubey</h4>
+ <hr>
+ <div class="small text-black-50">Tech &amp; Design</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Reyansh Dubey is a freshman at Princeton Day School (Class of '29). He is passionate about technology and looks forward to helping create an amazing hackathon experience.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Finance -->
+ <div class="row justify-content-center mb-2 mt-3">
+ <div class="col-lg-10 mx-auto text-center">
+ <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Finance</h3>
+ </div>
+ </div>
+ <div class="row justify-content-center">
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/ark.jpg" alt="Ark Rana">
+ <div class="card-body">
+ <h4 class="m-0">Ark Rana</h4>
+ <hr>
+ <div class="small text-black-50">Team Lead</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Ark Rana is a junior at Princeton Day School (Class of '28) interested in Computer Science and Artificial Intelligence. He leads the Finance team for PantherHack and is passionate about building the future of technology.</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/arjun.jpg" alt="Arjun Zagade">
+ <div class="card-body">
+ <h4 class="m-0">Arjun Zagade</h4>
+ <hr>
+ <div class="small text-black-50">Finance</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Arjun Zagade is a freshman at Princeton Day School (Class of '29). He is passionate about technology and eager to help organize an unforgettable hackathon experience for all participants.</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
  <img class="card-img-top" src="assets/images/team/sutej.jpg" alt="Sutej Deshpande">
  <div class="card-body">
  <h4 class="m-0">Sutej Deshpande</h4>
  <hr>
- <div class="small text-black-50">Team Leader</div>
+ <div class="small text-black-50">Finance</div>
  </div>
  </div>
  <div class="overlay">
@@ -973,11 +1076,65 @@
  <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
  <div class="containerthing h-100">
  <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/andrewg.jpg" alt="Andrew Guzman">
+ <div class="card-body">
+ <h4 class="m-0">Andrew Guzman</h4>
+ <hr>
+ <div class="small text-black-50">Finance</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Andrew Guzman is a freshman at Princeton Day School (Class of '29). He is excited to join the PantherHack team and help build a great event for student hackers.</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Outreach -->
+ <div class="row justify-content-center mb-2 mt-3">
+ <div class="col-lg-10 mx-auto text-center">
+ <h3 class="text-black" style="border-bottom: 2px solid #007bff; display: inline-block; padding-bottom: 5px;">Outreach</h3>
+ </div>
+ </div>
+ <div class="row justify-content-center">
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/aryan.jpg" alt="Aryan Kunwar">
+ <div class="card-body">
+ <h4 class="m-0">Aryan Kunwar</h4>
+ <hr>
+ <div class="small text-black-50">Team Lead</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Aryan Kunwar is a junior at Princeton Day School (Class of '27). He leads the Outreach team for PantherHack, helping to spread the word about the hackathon and connect with students across the country.</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
+ <img class="card-img-top" src="assets/images/team/aadit.jpg" alt="Aadit Gupta">
+ <div class="card-body">
+ <h4 class="m-0">Aadit Gupta</h4>
+ <hr>
+ <div class="small text-black-50">Outreach</div>
+ </div>
+ </div>
+ <div class="overlay">
+ <div class="textthing">Aadit Gupta is a freshman at Princeton Day School (Class of '29). He brings fresh ideas and enthusiasm to the PantherHack organizing team.</div>
+ </div>
+ </div>
+ </div>
+ <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+ <div class="containerthing h-100">
+ <div class="card py-4 h-100 text-center">
  <img class="card-img-top" src="assets/images/team/kyle.jpg" alt="Kyle Chen">
  <div class="card-body">
  <h4 class="m-0">Kyle Chen</h4>
  <hr>
- <div class="small text-black-50">Team Leader</div>
+ <div class="small text-black-50">Outreach</div>
  </div>
  </div>
  <div class="overlay">
@@ -988,41 +1145,11 @@
  <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
  <div class="containerthing h-100">
  <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/reyansh.jpg" alt="Reyansh Dubey">
- <div class="card-body">
- <h4 class="m-0">Reyansh Dubey</h4>
- <hr>
- <div class="small text-black-50">Team Leader</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Reyansh Dubey is a freshman at Princeton Day School (Class of '29). He is passionate about technology and looks forward to helping create an amazing hackathon experience.</div>
- </div>
- </div>
- </div>
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
- <img class="card-img-top" src="assets/images/team/andrewg.jpg" alt="Andrew Guzman">
- <div class="card-body">
- <h4 class="m-0">Andrew Guzman</h4>
- <hr>
- <div class="small text-black-50">Team Leader</div>
- </div>
- </div>
- <div class="overlay">
- <div class="textthing">Andrew Guzman is a freshman at Princeton Day School (Class of '29). He is excited to join the PantherHack team and help build a great event for student hackers.</div>
- </div>
- </div>
- </div>
- <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
- <div class="containerthing h-100">
- <div class="card py-4 h-100 text-center">
  <img class="card-img-top" src="assets/images/team/max.jpg" alt="Max Naumann">
  <div class="card-body">
  <h4 class="m-0">Max Naumann</h4>
  <hr>
- <div class="small text-black-50">Team Leader</div>
+ <div class="small text-black-50">Outreach</div>
  </div>
  </div>
  <div class="overlay">
@@ -1138,7 +1265,7 @@
  <div class="footer-subscribe text-center">
  <h2 class="subscribe-title">Sign up Now!</h2>
  <div class="subscribe-form mt-45">
- <form action="https://forms.gle/2vxSdURz9YtiYAkm8" target="_blank">
+ <form action="https://forms.gle/y8aCDCPWRtS5HYSJ6" target="_blank">
  <input type="email" placeholder="Enter Your Email">
  <button class="main-btn">Sign up Now!</button>
  </form>
@@ -1253,10 +1380,13 @@ no badge this year (2026)
 -->
 
 <!-- Floating Discord Button -->
-<a class="floating-discord" href="https://discord.gg/pantherhack" target="_blank">
+<a class="floating-discord" href="https://discord.gg/xpSM9bjFmu" target="_blank">
  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
  <span class="discord-text">Join Discord</span>
 </a>
+
+<!-- Back to Top Button -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
 <!-- Cool Features JavaScript -->
 <script>
@@ -1378,6 +1508,78 @@ window.addEventListener('scroll', function() {
     navbar.classList.remove('scrolled');
   }
 });
+
+// Back to Top Button
+(function() {
+  var btn = document.getElementById('backToTop');
+  if (!btn) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// Section Reveal on Scroll
+(function() {
+  var sections = document.querySelectorAll('.reveal-section');
+  if (!sections.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  sections.forEach(function(sec) { observer.observe(sec); });
+})();
+
+// Team Cards Stagger Animation
+(function() {
+  var cards = document.querySelectorAll('.containerthing');
+  if (!cards.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var allCards = entry.target.parentElement.parentElement.querySelectorAll('.containerthing');
+        allCards.forEach(function(card, index) {
+          setTimeout(function() {
+            card.classList.add('animate-in');
+          }, index * 100);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  if (cards[0]) observer.observe(cards[0]);
+})();
+
+// Smooth active nav highlighting
+(function() {
+  var sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY + 100;
+    sections.forEach(function(section) {
+      var top = section.offsetTop;
+      var height = section.offsetHeight;
+      var id = section.getAttribute('id');
+      var link = document.querySelector('.navbar-area a[href="#' + id + '"]');
+      if (link) {
+        if (scrollY >= top && scrollY < top + height) {
+          link.style.color = '#007bff';
+        } else {
+          link.style.color = '';
+        }
+      }
+    });
+  });
+})();
 </script>
 
 </body>
