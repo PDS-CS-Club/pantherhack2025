@@ -82,9 +82,11 @@ $(function() {
     });
     
     
-    $('.client-active').slick({
+    var $sponsorSlider = $('.client-active').slick({
     dots: false,
-    arrows: false,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev sponsor-arrow"><i class="lni-chevron-left"></i></button>',
+    nextArrow: '<button type="button" class="slick-next sponsor-arrow"><i class="lni-chevron-right"></i></button>',
     infinite: true,
     autoplay: true,
     autoplaySpeed: 0, // Continuous
@@ -92,12 +94,33 @@ $(function() {
     cssEase: 'linear', // No easing, continuous
     slidesToShow: 4,
     slidesToScroll: 1,
+    pauseOnHover: true,
     responsive: [
         { breakpoint: 1200, settings: { slidesToShow: 3 } },
         { breakpoint: 992, settings: { slidesToShow: 2 } },
         { breakpoint: 768, settings: { slidesToShow: 2 } },
         { breakpoint: 576, settings: { slidesToShow: 1 } }
     ]
+    });
+
+    // Pause auto-scroll on manual interaction, resume after 3s
+    $sponsorSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+        if (slick.mousePressed) {
+            slick.slickPause();
+            clearTimeout(window.sponsorResumeTimer);
+            window.sponsorResumeTimer = setTimeout(function() {
+                $sponsorSlider.slick('slickPlay');
+            }, 3000);
+        }
+    });
+
+    // Also handle arrow clicks
+    $('.sponsor-arrow').on('click', function() {
+        $sponsorSlider.slick('slickPause');
+        clearTimeout(window.sponsorResumeTimer);
+        window.sponsorResumeTimer = setTimeout(function() {
+            $sponsorSlider.slick('slickPlay');
+        }, 3000);
     });
 
     

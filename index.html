@@ -319,6 +319,53 @@
     transition: all 0.3s ease;
   }
 
+  /* Sponsor slider arrows */
+  .client-area .slick-slider {
+    position: relative;
+    padding: 0 50px;
+  }
+  .sponsor-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: 2px solid rgba(0,123,255,0.2);
+    color: #007bff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  .sponsor-arrow:hover {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+  }
+  .sponsor-arrow.slick-prev {
+    left: 0;
+  }
+  .sponsor-arrow.slick-next {
+    right: 0;
+  }
+  @media (max-width: 768px) {
+    .client-area .slick-slider {
+      padding: 0 35px;
+    }
+    .sponsor-arrow {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+    }
+  }
+
   /* FAQ accordion enhance */
   .card-header:hover {
     background: rgba(0,123,255,0.03) !important;
@@ -608,8 +655,8 @@
  <i class="lni-bulb"></i>
  </div>
  <div class="counter-content">
- <span class="count counter">10000</span>
- <p class="text">$ Prize Money</p>
+ <span class="count" style="font-size:inherit;">TBD</span>
+ <p class="text">Prize Money</p>
  </div>
  </div> <!-- single counter -->
  </div>
